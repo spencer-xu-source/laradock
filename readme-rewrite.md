@@ -53,3 +53,7 @@ MYSQL_ROOT_PASSWORD=root
 [//]: # (character-set-server=utf8mb4)
 
 # 设置大文件目录的数据卷指定
+
+根据项目名进行修改，nginx、php-fpm、workspace、php-worker
+- /mydata/${PROJECT_NAME}/log:${APP_CODE_PATH_CONTAINER}/${PROJECT_NAME}/log
+- /mydata/${PROJECT_NAME}/uploads:${APP_CODE_PATH_CONTAINER}/${PROJECT_NAME}/public/uploads
