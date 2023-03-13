@@ -1,0 +1,55 @@
+# .env
+CHANGE_SOURCE=true
+PHP_VERSION=8.1
+启用redis、xlswriter,gd,amqp 等扩展
+CHANGE_SOURCE=false
+SHELL_OH_MY_ZSH=true
+DATA_PATH_HOST=  #数据存储地址
+APP_CODE_PATH_HOST=../  代码存储地址
+WORKSPACE_TIMEZONE=PRC
+
+[//]: # (MYSQL_VERSION=5.7)
+
+常用容器  php  workspace nginx redis php-worker
+
+### workspace
+WORKSPACE_INSTALL_NODE=false
+WORKSPACE_INSTALL_YARN=false
+WORKSPACE_INSTALL_NPM_GULP=false
+WORKSPACE_INSTALL_NPM_VUE_CLI=false
+PHP_FPM_INSTALL_PHPREDIS=true
+WORKSPACE_INSTALL_XLSWRITER=true
+WORKSPACE_COMPOSER_REPO_PACKAGIST=https://mirrors.aliyun.com/composer/
+PHP_FPM_INSTALL_AMQP=true
+WORKSPACE_INSTALL_PHPDECIMAL=true
+WORKSPACE_VUE_CLI_SERVE_HOST_PORT 删除 or 改端口 8081
+
+### php fpm
+laravel.ini 用于写入常用配置
+PHP_FPM_INSTALL_PHPREDIS=true
+PHP_FPM_INSTALL_AMQP=true
+PHP_FPM_INSTALL_XLSWRITER=true
+PHP_FPM_INSTALL_PHPDECIMAL=true
+
+### php worker
+PHP_WORKER_INSTALL_GD=true
+PHP_WORKER_INSTALL_XLSWRITER=true
+
+[//]: # (PHP_WORKER_INSTALL_IMAGEMAGICK=false)
+PHP_WORKER_INSTALL_BCMATH=true
+PHP_WORKER_INSTALL_REDIS=true
+PHP_WORKER_INSTALL_AMQP=true
+
+### mysql
+MYSQL_VERSION=latest
+MYSQL_DATABASE=default
+MYSQL_USER=default
+MYSQL_PASSWORD=viking0413202
+MYSQL_PORT=3306
+MYSQL_ROOT_PASSWORD=root
+
+[//]: # (mysql/my.conf  )
+
+[//]: # (character-set-server=utf8mb4)
+
+# 设置大文件目录的数据卷指定
