@@ -964,6 +964,7 @@ services:
       depends_on:
         - php-fpm
         - php-fpm72
+        - php-fpm74
       networks:
         - frontend
         - backend
