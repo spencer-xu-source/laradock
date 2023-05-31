@@ -725,13 +725,13 @@ services:
         - DOCKER_CERT_PATH=/certs/client
         - FAKETIME=${PHP_FPM_FAKETIME}
       depends_on:
-        - workspace
+        - workspace-php72
       networks:
         - backend
       links:
         - docker-in-docker
 
-  ### PHP-FPM 7.4 ##############################################
+### PHP-FPM 7.4 ##############################################
     php-fpm74:
       build:
         context: ./php-fpm
