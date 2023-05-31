@@ -317,7 +317,10 @@ RUN if [ ${INSTALL_PHPREDIS} = true ]; then \
 ###########################################################################
 
 ARG INSTALL_SWOOLE=false
-RUN set -eux; \
+
+RUN \
+    apt-get install --yes libcurl4-openssl-dev libc-ares-dev && \
+    set -eux; \
     if [ ${INSTALL_SWOOLE} = true ]; then \
       # Install Php Swoole Extension
       if   [ $(php -r "echo PHP_VERSION_ID - PHP_RELEASE_VERSION;") = "50600" ]; then \
@@ -331,7 +334,6 @@ RUN set -eux; \
       else \
         pecl install swoole; \
       fi; \
-      docker-php-ext-enable swoole; \
       echo "extension=swoole.so" >> /etc/php/${LARADOCK_PHP_VERSION}/mods-available/swoole.ini; \
       echo "swoole.use_shortname='Off'" >> /etc/php/${LARADOCK_PHP_VERSION}/mods-available/swoole.ini; \
       ln -s /etc/php/${LARADOCK_PHP_VERSION}/mods-available/swoole.ini /etc/php/${LARADOCK_PHP_VERSION}/cli/conf.d/20-swoole.ini; \
