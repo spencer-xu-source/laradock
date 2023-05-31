@@ -334,6 +334,7 @@ RUN \
       else \
         pecl install swoole; \
       fi; \
+      docker-php-ext-enable swoole; \
       php -m | grep -q 'swoole'; \
     fi
 
