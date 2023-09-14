@@ -55,6 +55,7 @@ RUN set -xe; \
     usermod -p "*" laradock -s /bin/bash && \
     apt-get install -yqq \
       apt-utils \
+      net-tools \
       #
       #--------------------------------------------------------------------------
       # Mandatory Software's Installation
@@ -558,7 +559,7 @@ RUN \
       elif [ $(php -r "echo PHP_VERSION_ID - PHP_RELEASE_VERSION;") = "70400" ]; then \
         pecl install swoole-4.5.11; \
       elif [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ]; then \
-        pecl install --configureoptions 'enable-sockets="no" enable-openssl="yes" enable-http2="yes" enable-mysqlnd="no" enable-swoole-json="yes" enable-swoole-curl="yes" enable-cares="yes"' swoole-4.8.12; \
+        pecl install --configureoptions 'enable-sockets="no" enable-openssl="yes" enable-http2="yes" enable-mysqlnd="no" enable-swoole-json="yes" enable-swoole-curl="yes" enable-cares="yes"' swoole-4.8.13; \
       else \
         pecl install swoole; \
       fi; \
@@ -1662,7 +1663,8 @@ RUN if [ ${INSTALL_PHPDECIMAL} = true ]; then \
     if [ $(php -r "echo PHP_MAJOR_VERSION;") = "5" ]; then \
       echo 'decimal not support PHP 5.6'; \
     else \
-      apt-get install -yqq libmpdec-dev \
+      apt-get update -yqq \
+      && apt-get install -yqq libmpdec-dev \
       && pecl install decimal \
       && echo "extension=decimal.so" >> /etc/php/${LARADOCK_PHP_VERSION}/mods-available/decimal.ini \
       && ln -s /etc/php/${LARADOCK_PHP_VERSION}/mods-available/decimal.ini /etc/php/${LARADOCK_PHP_VERSION}/cli/conf.d/30-decimal.ini \
